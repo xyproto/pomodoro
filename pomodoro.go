@@ -11,14 +11,14 @@ import (
 	"github.com/dbatbold/beep"
 )
 
-// A small composition, especially for Pomodoro, by Alexander F. Rødseth, CC0 licensed
-const beepNotes = "A9HRDE DQ C5q3r6i DI qw3rt67io0 DS C6qr6i0[ DS C5r[acn"
+const (
+	// A small composition, especially for Pomodoro, by Alexander F. Rødseth, CC0 licensed
+	beepNotes       = "A9HRDE DQ C5q3r6i DI qw3rt67io0 DS C6qr6i0[ DS C5r[acn"
+	filenameOrEmpty = ""
+	volume          = 100
+)
 
 func playNotes() error {
-	const (
-		filenameOrEmpty = ""
-		volume          = 100
-	)
 	music := beep.NewMusic(filenameOrEmpty)
 	reader := bufio.NewReader(strings.NewReader(beepNotes))
 	go music.Play(reader, volume)

@@ -11,16 +11,11 @@ import (
 	"time"
 )
 
-const defaultDuration = 25 * time.Minute
+const (
+	defaultDuration = 25 * time.Minute
+	usage           = `Usage of pomodoro9000 %s:
 
-var silence = flag.Bool("silence", false, "Don't ring bell after countdown")
-
-var simple = flag.Bool("simple", false, "Display simple countdown")
-
-func init() {
-	const usage = `Usage of pomodoro %s:
-
-    pomodoro [options] [finish time]
+    pomodoro9000 [options] [finish time]
 
 Duration defaults to %d minutes. Finish may be a duration (e.g. "1h2m3s")
 or a target time (e.g. "1:00pm" or "13:02:03"). Durations may be expressed
@@ -28,6 +23,14 @@ as integer minutes (e.g. "15") or time with units (e.g. "1m30s" or "90s").
 
 Chimes system bell at the end of the timer, unless -silence is set.
 `
+)
+
+var (
+	silence = flag.Bool("silence", false, "Don't ring bell after countdown")
+	simple  = flag.Bool("simple", false, "Display simple countdown")
+)
+
+func init() {
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, usage, getVersion(), int(defaultDuration/time.Minute))
 		flag.PrintDefaults()
@@ -39,7 +42,6 @@ func getVersion() string {
 	if i, ok := debug.ReadBuildInfo(); ok {
 		return i.Main.Version
 	}
-
 	return "(unknown)"
 }
 
