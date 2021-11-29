@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/carlmjohnson/pomodoro/display"
 	"github.com/nsf/termbox-go"
 )
 
@@ -64,42 +63,42 @@ func render(start, finish time.Time, formatter func(time.Duration) string) bool 
 	termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
 
 	startStr := start.Format(timeFmt)
-	display.Point{
+	Point{
 		0, 0,
 		termbox.ColorBlue, termbox.ColorDefault,
 	}.Str("Start")
-	display.Point{
+	Point{
 		0, 1,
 		termbox.ColorWhite, termbox.ColorDefault,
 	}.Str(startStr)
 
 	nowStr := now.Format(timeFmt)
-	display.Point{
+	Point{
 		centerX - (len("Now") / 2), 0,
 		termbox.ColorBlue, termbox.ColorDefault,
 	}.Str("Now")
-	display.Point{
+	Point{
 		centerX - (len(nowStr) / 2), 1,
 		termbox.ColorWhite, termbox.ColorDefault,
 	}.Str(nowStr)
 
 	finishStr := finish.Format(timeFmt)
-	display.Point{
+	Point{
 		screenW - len("Finish"), 0,
 		termbox.ColorBlue, termbox.ColorDefault,
 	}.Str("Finish")
-	display.Point{
+	Point{
 		screenW - len(finishStr), 1,
 		termbox.ColorWhite, termbox.ColorDefault,
 	}.Str(finishStr)
 
 	remainingStr := formatter(remaining)
-	display.Point{
-		centerX - (len(remainingStr) * (display.BigCharWidth + 1) / 2), centerY,
+	Point{
+		centerX - (len(remainingStr) * (BigCharWidth + 1) / 2), centerY,
 		termbox.ColorBlue, termbox.ColorDefault,
 	}.BigStr(remainingStr)
 
-	display.Point{
+	Point{
 		0, centerY + 6,
 		termbox.ColorBlue, termbox.ColorWhite,
 	}.ProgressBar(screenW, int(start.Sub(now)), int(start.Sub(finish)))
