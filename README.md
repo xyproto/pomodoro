@@ -6,7 +6,7 @@ Command line [pomodoro timer](https://en.wikipedia.org/wiki/Pomodoro_Technique),
 
 For Go 1.17 or later:
 
-go install github.com/xyproto/pomodoro9000@latest
+    go install github.com/xyproto/pomodoro9000@latest
 
 ## Usage
 Usage of pomodoro9000:
