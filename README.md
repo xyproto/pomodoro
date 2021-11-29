@@ -41,4 +41,4 @@ Play a bell sound at the end of the timer, unless -silence is set.
         Display simple countdown
 ```
 
-![screenshot](./screenshot.png)
+![screenshot](img/screenshot.png)
